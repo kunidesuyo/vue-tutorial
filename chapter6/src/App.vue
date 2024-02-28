@@ -153,7 +153,7 @@ const cocktailList = ref(cocktailListInit);
 
 <!--  6-14-->
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import {ref} from "vue";
 
 const cocktailListInit = new Map<number, string>();
@@ -195,5 +195,39 @@ const deleteFromCocktailList = (): void => {
     CocktailListから5517のXYZを
     <button v-on:click="deleteFromCocktailList">削除</button>
   </p>
-</template>
+</template> -->
 
+<!-- 6-15 -->
+<script setup lang="ts">
+import {ref} from "vue";
+const whiteLadyInit: {
+  id: number;
+  name: string;
+  price: number;
+  recipe: string;
+} = {
+  id: 2345,
+  name: "white lady",
+  price: 1200,
+  recipe: "jin 30ml + cowantoro 15ml + lemon juice 15ml"
+};
+const whiteLady = ref(whiteLadyInit);
+const changeWhiteLadyPrice = (): void => {
+  whiteLady.value.price = 1500;
+};
+</script>
+
+<template>
+  <dl>
+    <template
+      v-for="(value, key) in whiteLady"
+      v-bind:key="key">
+      <dt>{{ key }}</dt>
+      <dd>{{ value }}</dd>
+    </template>
+  </dl>
+  <p>
+    price change 1500
+    <button v-on:click="changeWhiteLadyPrice">change</button>
+  </p>
+</template>
