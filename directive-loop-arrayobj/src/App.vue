@@ -9,11 +9,7 @@ const cocktailDataListInit: Cocktail[] = [
 ];
 const cocktailDataList = ref(cocktailDataListInit);
 
-interface Cocktail {
-  id: number;
-  name: string;
-  price: number;
-}
+
 </script>
 
 <template>
