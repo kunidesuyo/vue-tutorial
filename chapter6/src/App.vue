@@ -234,7 +234,7 @@ const changeWhiteLadyPrice = (): void => {
 
 <!-- 6-16 -->
 <script setup lang="ts">
-import {ref} from "vue";
+import {ref, computed} from "vue";
 
 const cocktailDataListInit = new Map<number, Cocktail>();
 cocktailDataListInit.set(2345, {id: 2345, name: "white lady", price: 1200});
