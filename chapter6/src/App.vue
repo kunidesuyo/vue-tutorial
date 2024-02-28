@@ -198,7 +198,7 @@ const deleteFromCocktailList = (): void => {
 </template> -->
 
 <!-- 6-15 -->
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import {ref} from "vue";
 const whiteLadyInit: {
   id: number;
@@ -229,5 +229,69 @@ const changeWhiteLadyPrice = (): void => {
   <p>
     price change 1500
     <button v-on:click="changeWhiteLadyPrice">change</button>
+  </p>
+</template> -->
+
+<!-- 6-16 -->
+<script setup lang="ts">
+import {ref} from "vue";
+
+const cocktailDataListInit = new Map<number, Cocktail>();
+cocktailDataListInit.set(2345, {id: 2345, name: "white lady", price: 1200});
+cocktailDataListInit.set(4412, {id: 4412, name: "blue hawaii", price: 1500});
+cocktailDataListInit.set(6792, {id: 6792, name: "newyork", price: 1100});
+cocktailDataListInit.set(8429, {id: 8429, name: "matyni", price: 1500});
+const cocktailDataList = ref(cocktailDataListInit);
+
+const cocktail1500 = computed(
+  (): Map<number, Cocktail> => {
+    const newList = new Map<number, Cocktail>();
+    cocktailDataList.value.forEach(
+      (value: Cocktail, key: number): void => {
+        if(value.price == 1500) {
+          newList.set(key, value);
+        }
+      }
+    )
+    return newList;
+  }
+);
+
+const changeWhiteLadyPriceInList = (): void => {
+  const whiteLady = cocktailDataList.value.get(2345) as Cocktail;
+  whiteLady.price = 1500;
+}
+
+interface Cocktail {
+  id: number;
+  name: string;
+  price: number;
+}
+</script>
+
+<template>
+  <section>
+    all cocktail
+  <ul>
+    <li
+      v-for="[id, cocktailItem] in cocktailDataList"
+      v-bind:key="id">
+      {{ cocktailItem.name }} price {{ cocktailItem.price }}
+    </li>
+  </ul>
+</section>
+  <secition>
+    値段が1500のカクテルリスト
+    <ul>
+      <li
+        v-for="[id, cocktailItem] in cocktail1500"
+        v-bind:key="'cocktail1500' + id">
+        {{ cocktailItem.name }} price {{ cocktailItem.price }} enn
+      </li>
+    </ul>
+  </secition>
+  <p>
+    CocktailList内のホワイトレディの価格を1500円に
+    <button v-on:click="changeWhiteLadyPriceInList">change</button>
   </p>
 </template>
