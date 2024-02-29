@@ -26,7 +26,7 @@ section {
 
 <!-- 8-4 -->
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import WithModel from "./components/WithModel.vue";
 </script>
 
@@ -36,6 +36,32 @@ import WithModel from "./components/WithModel.vue";
     <h2>v-modelを含むコンポーネント</h2>
     <WithModel />
     <WithModel />
+  </section>
+</template>
+
+<style>
+section {
+  border: blue 1px solid;
+  margin: 10px;
+}
+</style> -->
+
+<!-- 8-6 -->
+
+<script setup lang="ts">
+import {ref} from "vue";
+import OneInfo from "./components/OneInfo.vue";
+
+const propsTitle = ref("発生した乱数");
+const rand = Math.round(Math.random() * 100);
+const propsContent = ref(rand);
+</script>
+
+<template>
+  <h1>Props 基礎</h1>
+  <section>
+    <h2>属性に直接記述</h2>
+    <OneInfo v-bind:title="propsTitle" v-bind:content="propsContent"/>
   </section>
 </template>
 
