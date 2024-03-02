@@ -105,7 +105,7 @@ interface Weather {
 
 <!-- 8-11 -->
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import {ref, computed} from "vue";
 import OneMember from "./components/OneMember.vue";
 
@@ -149,4 +149,26 @@ interface Member {
 			v-bind:points="member.points"
 			v-bind:note="member.note"/>
 	</section>
+</template> -->
+
+<!-- 8-14 -->
+
+<script setup lang="ts">
+import {ref} from "vue";
+import OneSection2 from "./components/OneSection2.vue";
+
+const randInit = Math.round(Math.random() * 10);
+const rand = ref(randInit);
+const onCreateNewRand = (): void => {
+  rand.value = Math.round(Math.random() * 10);
+}
+</script>
+
+<template>
+  <section>
+    <p>親コンポーネントで乱数を表示: {{ rand }}</p>
+    <OneSection2
+      v-bind:rand="rand"
+      v-on:createNewRand="onCreateNewRand"/>
+  </section>
 </template>
