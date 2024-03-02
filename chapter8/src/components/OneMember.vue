@@ -9,18 +9,12 @@ interface Props {
   note?: string;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(
+  defineProps<Props>(),
+  {note: "--"}
+);
 
 const localPoints = ref(props.points);
-const localNote = computed(
-  (): string => {
-    let localNote = props.note;
-    if(localNote == undefined) {
-      localNote = "--";
-    }
-    return localNote;
-  }
-);
 
 const pointUp = (): void => {
   localPoints.value++;
@@ -38,7 +32,7 @@ const pointUp = (): void => {
       <dt>保有ポイント</dt>
       <dd>{{ localPoints }}</dd>
       <dt>備考</dt>
-      <dd>{{ localNote }}</dd>
+      <dd>{{ note }}</dd>
     </dl>
     <button v-on:click="pointUp">ポイント加算</button>
   </section>
