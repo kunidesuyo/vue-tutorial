@@ -175,7 +175,7 @@ const onCreateNewRand = (): void => {
 
 <!-- 8-16 -->
 
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import {ref, computed} from "vue";
 import OneMember from "./components/OneMember.vue";
 
@@ -220,4 +220,23 @@ interface Member {
 			v-model:points="member.points"
 			v-bind:note="member.note"/>
 	</section>
+</template> -->
+
+
+<!-- 8-22 -->
+<script setup lang="ts">
+import {reactive, provide} from "vue";
+import BaseSection from "./components/BaseSection.vue";
+import type {Member} from "./interfaces";
+
+//会員情報リストの用意。
+const memberList = new Map<number, Member>();
+memberList.set(33456, {id: 33456, name: "田中太郎", email: "bow@example.com", points: 35, note: "初回入会特典あり。"});
+memberList.set(47783, {id: 47783, name: "鈴木二郎", email: "mue@example.com", points: 53});
+//会員情報リストをProvide。
+provide("memberList", reactive(memberList));
+</script>
+
+<template>
+	<BaseSection/>
 </template>
