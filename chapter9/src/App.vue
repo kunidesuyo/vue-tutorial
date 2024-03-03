@@ -1,27 +1,19 @@
 <script setup lang="ts">
-import {ref} from "vue";
 import OneSection from "./components/OneSection.vue";
-
-const taroProblemsInit: string[] = ["電話が通じません。", "留守です。"];
-const taro = ref("田中太郎");
-const taroProblems = ref(taroProblemsInit);
-const jiro = ref("鈴木二郎");
 </script>
 
 <template>
-	<section>
-		<OneSection v-bind:name="taro">
-			<template v-slot:default>
-				<p>問題発生</p>
-			</template>
-			<template v-slot:detail>
-				<ul>
-					<li v-for="problem in taroProblems" v-bind:key="problem">
-						{{problem}}
-					</li>
-				</ul>
-			</template>
-		</OneSection>
-		<OneSection v-bind:name="jiro"/>
-	</section>
+  <section>
+    <OneSection>
+      <template v-slot:default="slotProps">
+        <dl>
+          <dt>名前</dt>
+          <dd>{{ slotProps.memberInfo.name }}</dd>
+          <dt>状況</dt>
+          <dd>{{ slotProps.memberInfo.state }}</dd>
+        </dl>
+      </template>
+    </OneSection>
+    <OneSection/>
+  </section>
 </template>
