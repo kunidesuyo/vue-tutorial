@@ -10,7 +10,7 @@ const jiro = ref("鈴木二郎");
   <section>
     <h2>Slotの利用</h2>
     <OneSection v-bind:name="taro">
-      <p>連絡がつきません</p>
+      <p>{{taro}}連絡がつきません</p>
     </OneSection>
     <OneSection v-bind:name="jiro"/>
   </section>
