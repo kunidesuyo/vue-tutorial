@@ -34,5 +34,6 @@ const memberList = inject("memberList") as Map<number, Member>;
         </li>
       </ul>
     </section>
+    <RouterView/>
   </section>
 </template>
