@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import {divideTwoNums} from "@/functions";
 
-const num1 = ref(6);
-const num2 = ref(3);
-const ans = computed(
-  (): number => {
-    return divideTwoNums(num1.value, num2.value);
-  }
-);
+const isVisible = ref(false);
+const onShowButtonClick = (): void => {
+  isVisible.value = true;
+};
 </script>
 
 <template>
   <p>
-    <input type="number" data-testid="num1" v-model="num1">
-    /
-    <input type="number" data-testid="num2" v-model="num2">
-    =<span data-testid="ans">{{ ans }}</span>
+    隠し領域を
+    <button data-testid="showButton" v-on:click="onShowButtonClick">表示</button>
   </p>
+  <p v-if="isVisible" data-testid="invisible">表示されました！</p>
 </template>
